@@ -3,24 +3,23 @@ const { resolve } = require('path')
 require('colors')
 
 const mostrarMenu = () => {
-
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         console.clear()
         console.log('========================'.green)
         console.log('Seleccione una opcion'.green)
         console.log('========================\n'.green)
 
-        console.log(`${'1.'.green} Crear tarea`)
-        console.log(`${'2.'.green} Listar tarea`)
-        console.log(`${'3.'.green} Listar tareas completadas`)
-        console.log(`${'4.'.green} Listar tareas pendientes`)
-        console.log(`${'5.'.green} Completar tarea(s)`)
-        console.log(`${'6.'.green} Borrar tarea`)
-        console.log(`${'7.'.green} Salir\n`)
+        console.log(`${'1.'.blue} Crear tarea`)
+        console.log(`${'2.'.blue} Listar tarea`)
+        console.log(`${'3.'.blue} Listar tareas completadas`)
+        console.log(`${'4.'.blue} Listar tareas pendientes`)
+        console.log(`${'5.'.blue} Completar tarea(s)`)
+        console.log(`${'6.'.blue} Borrar tarea`)
+        console.log(`${'7.'.blue} Salir\n`)
 
         const readline = require('readline').createInterface({
             input: process.stdin,
-            output: process.stdout
+            output: process.stdout,
         })
 
         readline.question('Seleccione una opcion: ', (opt) => {
@@ -30,22 +29,24 @@ const mostrarMenu = () => {
     })
 }
 
-const pausa = async() => {
-
-    return new Promise(resolve => {
+const pausa = async () => {
+    return new Promise((resolve) => {
         const readline = require('readline').createInterface({
             input: process.stdin,
-            output: process.stdout
+            output: process.stdout,
         })
 
-        readline.question(`\nPresione ${'ENTER'.blue} para continuar\n`, (opt) => {
-            readline.close()
-            resolve(opt)
-        })
+        readline.question(
+            `\nPresione ${'ENTER'.blue} para continuar\n`,
+            (opt) => {
+                readline.close()
+                resolve(opt)
+            }
+        )
     })
 }
 
 module.exports = {
     mostrarMenu,
-    pausa
+    pausa,
 }
