@@ -5,6 +5,7 @@ const {
     leerInput,
     showListTasks,
     confirm,
+    showMultiplesItems,
 } = require('./helpers/inquierer')
 require('colors')
 const { saveDB, readDB } = require('./helpers/saveFile')
@@ -36,6 +37,10 @@ const main = async () => {
                     break
                 case 4:
                     tareas.listCompletedPending(false)
+                    break
+                case 5:
+                    const ids = await showMultiplesItems(tareas.listadoArr)
+                    tareas.toggleTaskEnded(ids)
                     break
                 case 6:
                     let optDelete = await showListTasks(tareas.listadoArr)

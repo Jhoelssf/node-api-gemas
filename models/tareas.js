@@ -30,7 +30,9 @@ class Tareas {
         list.forEach((task, index) => {
             const idx = `${index + 1}`.green
             const status = task.completadoEn
-            const ended = !!status ? `Completada`.green : `Pendiente`.red
+            const ended = !!status
+                ? `${'Completada'.green} :: ${status.blue}`
+                : `Pendiente`.red
             console.log(`${idx}. ${task.descripcion} :: ${ended}`)
         })
     }
@@ -49,6 +51,20 @@ class Tareas {
     deleteTask(id) {
         delete this._listado[id]
         this.fullList()
+    }
+
+    toggleTaskEnded(ids) {
+        ids.forEach((id) => {
+            const task = this._listado[id]
+            if (!task.completadoEn) {
+                task.completadoEn = new Date().toISOString()
+            }
+        })
+        this.listadoArr.forEach((task) => {
+            if (!ids.includes(task.id)) {
+                this._listado[task.id].completadoEn = null
+            }
+        })
     }
 }
 
